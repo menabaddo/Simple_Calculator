@@ -3,6 +3,7 @@ package com.example.simplecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MaterialButton buttonAC, buttonDot;
     String buttonText;
     String finalResult = "";
+    String dataToCalculate = "";
 
 
     @Override
@@ -60,32 +62,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view; //whatever button is clicked
 
-        if (button.equals(buttonMultiply)) {
-           buttonText = "*";
 
-        }else {
             buttonText = button.getText().toString();// it will get the text assigned initially to the button
-        }
-        String dataToCalculate = solutionTv.getText().toString();
+
+
+
+             dataToCalculate = solutionTv.getText().toString();
+
 
         if(buttonText.equals("AC")){
             solutionTv.setText("");
             resultTv.setText("0");
             return;
         }
+
+
         if(buttonText.equals("=")){
             solutionTv.setText(resultTv.getText());
             return;
         }
-        if(buttonText.equals("C") && !dataToCalculate.isEmpty()){
 
-                dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
+        Log.d("TAG", "dataToCalculate: " + dataToCalculate);
 
-
+        Log.d("TAG", "buttonText: " + buttonText);
+        if(buttonText.equals("C") && dataToCalculate.length() == 0){
+            Log.d("test", "test");
+            resultTv.setText("0");
+            return;
+        } else if (buttonText.equals("C") && dataToCalculate.length() > 0) {
+            dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
         }
 
 
-        else if(!buttonText.equals("C")){
+
+
+
+
+
+
+      if(!buttonText.equals("C") ){
             dataToCalculate = dataToCalculate+buttonText;
 
         }
@@ -103,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(!finalResult.equals("Err")){
             resultTv.setText(finalResult);
         }
-
 
 
 
