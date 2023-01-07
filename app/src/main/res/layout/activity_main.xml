@@ -345,7 +345,7 @@
                 style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                 android:textSize="32dp"
                 android:textColor="@color/white"
-                android:id="@+id/button_."
+                android:id="@+id/button_dot"
                 android:text="."
 
                 />
