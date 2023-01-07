@@ -62,8 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view; //whatever button is clicked
 
+            buttonText = button.getText().toString(); // it will get the text assigned initially to the button
 
-            buttonText = button.getText().toString();// it will get the text assigned initially to the button
+
 
 
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         solutionTv.setText(dataToCalculate);
 
         if(dataToCalculate.length() > 0){
-
+            dataToCalculate = dataToCalculate.replace("X", "*");
             finalResult = getResult(dataToCalculate);
 
         }
