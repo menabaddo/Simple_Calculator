@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MaterialButton button0, button1, button2, button3, button4, button5, button6, button7, button8, button9;
     MaterialButton buttonAC, buttonDot;
     String buttonText;
+    String finalResult = "";
 
 
     @Override
@@ -76,19 +77,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             solutionTv.setText(resultTv.getText());
             return;
         }
-        if(buttonText.equals("C")){
-            dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length()-1);
+        if(buttonText.equals("C") && !dataToCalculate.isEmpty()){
+
+                dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
+
+
         }
 
 
-        else{
+        else if(!buttonText.equals("C")){
             dataToCalculate = dataToCalculate+buttonText;
 
         }
 
         solutionTv.setText(dataToCalculate);
 
-        String finalResult = getResult(dataToCalculate);
+        if(dataToCalculate.length() > 0){
+
+            finalResult = getResult(dataToCalculate);
+
+        }
+
 
 
         if(!finalResult.equals("Err")){
@@ -100,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+    //get result method
 
     String getResult(String data) {
         try {
