@@ -7,9 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+
+
+
 import com.google.android.material.button.MaterialButton;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
+
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,12 +28,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String dataToCalculate = "";
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         resultTv = findViewById(R.id.result_tv);
         solutionTv = findViewById(R.id.solution_tv);
+
+
 
         assignId(buttonC, R.id.button_c);
         assignId( buttonBracketOpen, R.id.button_open_bracket);
@@ -129,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     String getResult(String data) {
         try {
+            //doesn't process bracket
             Context context = Context.enter();
             context.setOptimizationLevel(-1);
             Scriptable scriptable = context.initStandardObjects();
