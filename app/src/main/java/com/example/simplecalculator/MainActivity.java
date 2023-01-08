@@ -1,11 +1,14 @@
 package com.example.simplecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.graphics.Color;
 
 
 
@@ -37,7 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resultTv = findViewById(R.id.result_tv);
         solutionTv = findViewById(R.id.solution_tv);
 
+        if (isNightModeEnabled()) {
 
+            resultTv.setTextColor(Color.WHITE);
+            solutionTv.setTextColor(Color.WHITE);
+        } else {
+            resultTv.setTextColor(Color.BLACK);
+            solutionTv.setTextColor(Color.BLACK);
+        }
 
         assignId(buttonC, R.id.button_c);
         assignId( buttonBracketOpen, R.id.button_open_bracket);
@@ -66,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn.setOnClickListener(this);
     }
 
+
+
+
+
+
     @Override
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view; //whatever button is clicked
@@ -77,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
              dataToCalculate = solutionTv.getText().toString();
+
+
+
 
 
         if(buttonText.equals("AC")){
@@ -153,4 +171,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+
+    private boolean isNightModeEnabled() {
+        int uiMode = getResources().getConfiguration().uiMode; //checks the night mode of the device
+        return (uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+
 }
